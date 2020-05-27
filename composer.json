@@ -1,0 +1,32 @@
+{
+    "name": "infifni/fan-courier-api-client",
+    "type": "library",
+    "description": "Fan Courier API Client",
+    "keywords": ["Fan Courier API Client", "Fan Carrier", "Fan Courier", "Fan API Client"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cocoș Laurențiu",
+            "email": "lco@infifnisoftware.ro"
+        }
+    ],
+    "prefer-stable": true,
+    "require": {
+        "ext-curl": "*",
+        "php": ">=7.0",
+        "php-curl-class/php-curl-class": "^7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.1"
+    },
+    "autoload":{
+        "psr-4": {
+            "Infifni\\FanCourierApiClient\\": "src/"
+        }
+    },
+    "autoload-dev":{
+        "psr-4": {
+            "Infifni\\FanCourierApiClient\\Tests\\": "tests/"
+        }
+    }
+}

@@ -88,27 +88,27 @@ class GenerateAwb extends Endpoint implements CsvFileRequestInterface
         // this is the array data that contains the details about what dispatches need to be imported
         // this will be converted into a CSV file
         // the data corresponds to the import AWBs model from FAN application, it can contain one or more dispatches
-        if (empty($params['fisier']) || !is_array($params['fisier'])) {
+        if (empty($params['fisier']) || ! is_array($params['fisier'])) {
             throw new FanCourierInvalidParamException(
                 "Must set a field 'fisier' containing multiple arrays."
             );
         }
 
-        $validationRules = $this->getFieldRules();
-        $serviceFieldAllowedValues = [self::SERVICE_ALLOWED_VALUES['collector_account'], self::SERVICE_ALLOWED_VALUES['standard']];
+        $serviceAllowedValues = self::SERVICE_ALLOWED_VALUES;
+        unset($serviceAllowedValues['export']);
         foreach ($params['fisier'] as $serviceParams) {
             $serviceType = $serviceParams['tip_serviciu'] ?? null;
             if (
                 empty($serviceType)
                 ||
-                ! in_array($serviceType, $serviceFieldAllowedValues, true)
+                ! in_array($serviceType, $serviceAllowedValues, true)
             ) {
                 throw new FanCourierInvalidParamException(
-                    "Must set a field 'tip_serviciu' with one of these values: " . implode(', ', $serviceFieldAllowedValues)
+                    "Must set a field 'tip_serviciu' with one of these values: " . implode(', ', $serviceAllowedValues)
                 );
             }
 
-            $this->validateAgainst($serviceParams, $validationRules[$serviceType]);
+            $this->validateAgainst($serviceParams, $this->getFieldRules());
         }
 
         return true;
@@ -121,8 +121,8 @@ class GenerateAwb extends Endpoint implements CsvFileRequestInterface
     private function getFieldRules(): array
     {
         $serviceAllowedValues = self::SERVICE_ALLOWED_VALUES;
-        unserialize($serviceAllowedValues['export']);
-        $baseRules = [
+        unset($serviceAllowedValues['export']);
+        return [
             'tip_serviciu' => [
                 'required' => true,
                 'allowed_values' => $serviceAllowedValues
@@ -233,15 +233,6 @@ class GenerateAwb extends Endpoint implements CsvFileRequestInterface
             'date_personale' => [
                 'required' => false
             ],
-        ];
-        $standardServiceRules = $baseRules;
-        $accountCollectorServiceRules = $baseRules;
-        $accountCollectorServiceRules['banca'] = ['required' => true];
-        $accountCollectorServiceRules['iban'] = ['required' => true];
-
-        return [
-            self::SERVICE_ALLOWED_VALUES['standard'] => $standardServiceRules,
-            self::SERVICE_ALLOWED_VALUES['collector_account'] => $accountCollectorServiceRules
         ];
     }
 

@@ -82,6 +82,7 @@ abstract class Base implements BaseInterface
     private function postCurlRequest($data, $url, $resultType)
     {
         $curl = new Curl();
+        $curl->setTimeout($this->timeout);
         $curl->post($url, $data);
         if ($curl->error) {
             throw new FanCourierInstanceException('Invalid curl error. Code: '. $curl->errorCode . '. Message: '. $curl->errorMessage);
@@ -135,4 +136,10 @@ abstract class Base implements BaseInterface
                 return $result;
         }
     }
+
+    /**
+     * @param int $timeout
+     * @return Base
+     */
+    abstract public function setTimeout(int $timeout): self;
 }

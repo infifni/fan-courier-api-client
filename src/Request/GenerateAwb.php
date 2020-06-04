@@ -192,7 +192,7 @@ class GenerateAwb extends Endpoint implements CsvFileRequestInterface
                 'required' => true
             ],
             'nr' => [
-                'required' => true
+                'required' => false
             ],
             'cod_postal' => [
                 'required' => true

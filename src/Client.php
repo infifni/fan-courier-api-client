@@ -37,7 +37,15 @@ use Infifni\FanCourierApiClient\Request\ReadCsvInterface;
  */
 class Client extends Base
 {
+    /**
+     * @var string[]
+     */
     private $credentials;
+
+    /**
+     * @var integer
+     */
+    protected $timeout = 30;
 
     /**
      * @var array
@@ -108,5 +116,15 @@ class Client extends Base
         } catch (Exception $e) {
             throw new FanCourierInstanceException('Invalid request exception: '.$e->getMessage());
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setTimeout(int $timeout): Base
+    {
+        $this->timeout = $timeout;
+
+        return $this;
     }
 }

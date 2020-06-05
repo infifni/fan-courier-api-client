@@ -10,6 +10,7 @@
 
 namespace Infifni\FanCourierApiClient;
 
+use CURLFile;
 use Exception;
 use Infifni\FanCourierApiClient\Exception\CsvWrongReadException;
 use Infifni\FanCourierApiClient\Exception\FanCourierInstanceException;
@@ -23,11 +24,12 @@ use Infifni\FanCourierApiClient\Request\ReadCsvInterface;
 
 abstract class Base implements BaseInterface
 {
-    /** @var EndpointInterface */
+    /**
+     * @var EndpointInterface
+     */
     protected $instance;
 
     /**
-     * 
      * @param string $class
      * @return EndpointInterface
      * @throws FanCourierUnknownRequestException
@@ -43,7 +45,6 @@ abstract class Base implements BaseInterface
     }
 
     /**
-     *
      * @param array $credentials
      * @return mixed
      * @throws FanCourierInvalidParamException
@@ -71,7 +72,6 @@ abstract class Base implements BaseInterface
     }
 
     /**
-     *
      * @param array $data
      * @param string $url
      * @param string $resultType
@@ -84,6 +84,11 @@ abstract class Base implements BaseInterface
         $curl = new Curl();
         $curl->setTimeout($this->timeout);
         $curl->post($url, $data);
+        foreach ($data as $value) {
+            if ($value instanceof CURLFile) {
+                @unlink($value->getFilename());
+            }
+        }
         if ($curl->error) {
             throw new FanCourierInstanceException('Invalid curl error. Code: '. $curl->errorCode . '. Message: '. $curl->errorMessage);
         }
@@ -92,7 +97,6 @@ abstract class Base implements BaseInterface
     }
 
     /**
-     * 
      * @return array
      */
     private function checkApiResultType (): array
@@ -106,7 +110,6 @@ abstract class Base implements BaseInterface
     }
 
     /**
-     *
      * @param string $type
      * @param string $result
      * @return string|bool|array

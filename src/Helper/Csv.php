@@ -181,21 +181,17 @@ class Csv
     public static function convertToCSV(array $data, array $headers): array
     {
         $return_data = [];
+        $defaultRow = $headers;
+        foreach ($defaultRow as $key => $value) {
+            $defaultRow[$key] = '';
+        }
         foreach ($data as $key => $value) {
             $filename = tempnam('/tmp', 'FanCourier'.  time(). '.csv');
             $csv = fopen($filename, 'wb');
             try {
-                reset($value);
-                $columns = array_keys(current($value));
-
-                foreach ($columns as $columnKey => $column) {
-                    $columns[$columnKey] = $headers[$column];
-                }
-
-                fputcsv($csv, $columns);
-
+                fputcsv($csv, $headers);
                 foreach ($value as $row) {
-                    fputcsv($csv, $row);
+                    fputcsv($csv, array_merge($defaultRow, $row));
                 }
             } catch (Exception $exc) {
                 throw new FanCourierInstanceException($exc->getTraceAsString());

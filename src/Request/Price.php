@@ -15,8 +15,6 @@ use Infifni\FanCourierApiClient\Exception\FanCourierUnknownRequestException;
 
 class Price extends Endpoint
 {
-    const RECIPIENT_ALLOWED_VALUE = 'destinatar';
-    const SENDER_ALLOWED_VALUE = 'expeditor';
     const CONTENT_TYPE_DOCUMENT_ALLOWED_VALUE = 1;
     const CONTENT_TYPE_NON_DOCUMENT_ALLOWED_VALUE = 2;
     const SEND_MODE_BY_AIR_ALLOWED_VALUE = 'aerian';
@@ -118,6 +116,9 @@ class Price extends Endpoint
                 'allowed_values' => [
                     self::SENDER_ALLOWED_VALUE, self::RECIPIENT_ALLOWED_VALUE
                 ]
+            ],
+            'optiuni' => [
+                'required' => false
             ]
         ];
     }

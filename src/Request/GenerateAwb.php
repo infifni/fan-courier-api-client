@@ -16,8 +16,6 @@ use Infifni\FanCourierApiClient\Exception\FanCourierInvalidParamException;
 class GenerateAwb extends Endpoint implements CsvFileRequestInterface
 {
     const API_SUBMIT_ROW_SUCCESSFUL = '1';
-    const RECIPIENT_ALLOWED_VALUE = 'destinatar';
-    const SENDER_ALLOWED_VALUE = 'expeditor';
 
     protected $keys;
 

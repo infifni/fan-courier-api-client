@@ -42,6 +42,9 @@ interface EndpointInterface
         'export' => 'export'
     ];
 
+    const RECIPIENT_ALLOWED_VALUE = 'destinatar';
+    const SENDER_ALLOWED_VALUE = 'expeditor';
+
     /**
      * @param array $params
      * @return EndpointInterface

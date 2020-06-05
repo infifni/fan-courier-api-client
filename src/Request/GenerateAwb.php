@@ -159,7 +159,7 @@ class GenerateAwb extends Endpoint implements CsvFileRequestInterface
                 'required' => false
             ],
             'persoana_contact_expeditor' => [
-                'required' => true
+                'required' => false
             ],
             'observatii' => [
                 'required' => false
@@ -171,7 +171,7 @@ class GenerateAwb extends Endpoint implements CsvFileRequestInterface
                 'required' => true
             ],
             'persoana_contact' => [
-                'required' => true
+                'required' => false
             ],
             'telefon' => [
                 'required' => true
@@ -180,7 +180,7 @@ class GenerateAwb extends Endpoint implements CsvFileRequestInterface
                 'required' => false
             ],
             'email' => [
-                'required' => true
+                'required' => false
             ],
             'judet' => [
                 'required' => true

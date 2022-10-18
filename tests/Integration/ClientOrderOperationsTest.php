@@ -100,7 +100,7 @@ class ClientOrderOperationsTest extends BaseTestCase
 
     public function setUp(): void
     {
-        $this->params['ora_ridicare'] = date('H:i', time() + 3600);
+        $this->params['ora_ridicare'] = (new \DateTime('now + 2 hour'))->format('H:i');
 
         parent::setUp();
     }
@@ -125,7 +125,7 @@ class ClientOrderOperationsTest extends BaseTestCase
     public function testOrderFailedExtraParam()
     {
         $this->expectException(FanCourierInvalidParamException::class);
-        $this->expectExceptionMessageMatches('/^The only keys accepted are: /');
+        $this->expectExceptionMessageMatches('/^These keys are not allowed: /');
 
         $params = $this->params;
         $params['extra'] = 'new';
@@ -201,7 +201,7 @@ class ClientOrderOperationsTest extends BaseTestCase
     public function testExportOrdersFailedExtraParam()
     {
         $this->expectException(FanCourierInvalidParamException::class);
-        $this->expectExceptionMessageMatches('/^The only keys accepted are: /');
+        $this->expectExceptionMessageMatches('/^These keys are not allowed: /');
 
         $this->client->exportOrders([
             'data' => date('d.m.Y'),

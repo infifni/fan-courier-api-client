@@ -60,7 +60,11 @@ class GenerateAwb extends Endpoint implements CsvFileRequestInterface
                     'awb' => self::API_SUBMIT_ROW_SUCCESSFUL === $resultPerRow[1] ? $resultPerRow[2] : false,
                     'cost' => self::API_SUBMIT_ROW_SUCCESSFUL === $resultPerRow[1] ? $resultPerRow[3] : false,
                     'sent_params' => current(array_values($requestParams))[(int) $resultPerRow[0] - 1],
-                    'error_message' => self::API_SUBMIT_ROW_SUCCESSFUL === $resultPerRow[1] ? '' : $resultPerRow[2]];
+                    'error_message' => self::API_SUBMIT_ROW_SUCCESSFUL === $resultPerRow[1] ? ''
+                        : $resultPerRow[2] . '. ' . $resultPerRow[3],
+                    'all' => $resultPerRow,
+                ];
+
             }
         } catch (Exception $ex) {
             $returnResult[] = [

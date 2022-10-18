@@ -37,7 +37,7 @@ class DeleteAwbTest extends TestCase
 
         $this->expectException(FanCourierInvalidParamException::class);
         $this->expectExceptionMessageMatches(
-            "/^The only keys accepted are: /"
+            "/^These keys are not allowed: /"
         );
 
         $deleteAwb->validate($params);

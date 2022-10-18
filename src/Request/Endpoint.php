@@ -112,7 +112,7 @@ abstract class Endpoint implements EndpointInterface
 
         if ($rejectExtraFields && count(array_diff_key($params, $validationFieldRules)) > 0) {
             throw new FanCourierInvalidParamException(
-                'The only keys accepted are: '.implode(', ', array_keys($validationFieldRules))
+                'These keys are not allowed: '.implode(', ', array_keys(array_diff_key($params, $validationFieldRules)))
             );
         }
 

@@ -127,7 +127,7 @@ class ClientCityTest extends BaseTestCase
         $params['Extra'] = 'ciocolata';
 
         $this->expectException(FanCourierInvalidParamException::class);
-        $this->expectExceptionMessageMatches('/^The only keys accepted are:/');
+        $this->expectExceptionMessageMatches('/^These keys are not allowed:/');
 
         $this->client->city($params);
     }

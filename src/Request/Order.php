@@ -95,6 +95,9 @@ class Order extends Endpoint
                 'required' => true,
                 'regex' => '/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/'
             ],
+            'data_cmd' => [ // required, format: hh:mm
+                'required' => false,
+            ],
             'nr_plicuri' => [ // optional, must be at least one envelope if specified
                 'required' => false
             ],

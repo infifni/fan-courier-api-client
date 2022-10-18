@@ -185,7 +185,7 @@ class ClientAwbOperationsTest extends BaseTestCase
         $params['Extra'] = 'guns ... lots of guns';
 
         $this->expectException(FanCourierInvalidParamException::class);
-        $this->expectExceptionMessageMatches('/^The only keys accepted are: /');
+        $this->expectExceptionMessageMatches('/^These keys are not allowed: /');
 
         $this->client->generateAwb([
             'fisier' => [
@@ -219,7 +219,7 @@ class ClientAwbOperationsTest extends BaseTestCase
     public function testDeleteAwbFailedExtraParam()
     {
         $this->expectException(FanCourierInvalidParamException::class);
-        $this->expectExceptionMessageMatches("/^The only keys accepted are:/");
+        $this->expectExceptionMessageMatches("/^These keys are not allowed:/");
 
         $this->client->deleteAwb([
             'AWB' => 'testawb',
@@ -278,7 +278,7 @@ class ClientAwbOperationsTest extends BaseTestCase
     public function testGetAwbFailedExtraParam()
     {
         $this->expectException(FanCourierInvalidParamException::class);
-        $this->expectExceptionMessageMatches("/^The only keys accepted are: /");
+        $this->expectExceptionMessageMatches("/^These keys are not allowed: /");
 
         $this->client->getAwb([
             'nr' => 'testawb',
@@ -330,7 +330,7 @@ class ClientAwbOperationsTest extends BaseTestCase
     public function testTrackAwbFailedExtraParam()
     {
         $this->expectException(FanCourierInvalidParamException::class);
-        $this->expectExceptionMessageMatches("/^The only keys accepted are: /");
+        $this->expectExceptionMessageMatches("/^These keys are not allowed: /");
 
         $this->client->trackAwb([
             'AWB' => 'testawb',
@@ -379,7 +379,7 @@ class ClientAwbOperationsTest extends BaseTestCase
     public function testDownloadAwbFailedExtraParam()
     {
         $this->expectException(FanCourierInvalidParamException::class);
-        $this->expectExceptionMessageMatches("/^The only keys accepted are: /");
+        $this->expectExceptionMessageMatches("/^These keys are not allowed: /");
 
         $this->client->downloadAwb([
             'AWB' => 'testawb',

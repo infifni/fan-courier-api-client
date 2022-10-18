@@ -105,7 +105,7 @@ class ClientExportReportsTest extends BaseTestCase
     public function testExportReportsFailedExtraParam()
     {
         $this->expectException(FanCourierInvalidParamException::class);
-        $this->expectExceptionMessageMatches('/^The only keys accepted are:/');
+        $this->expectExceptionMessageMatches('/^These keys are not allowed:/');
 
         $this->client->exportReports([
             'data' => date('d.m.Y'),

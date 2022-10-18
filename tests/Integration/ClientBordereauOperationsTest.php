@@ -177,7 +177,7 @@ class ClientBordereauOperationsTest extends BaseTestCase
     public function testExportBordereauFailedExtraParam()
     {
         $this->expectException(FanCourierInvalidParamException::class);
-        $this->expectExceptionMessageMatches('/^The only keys accepted are:/');
+        $this->expectExceptionMessageMatches('/^These keys are not allowed:/');
 
         $this->client->exportBordereau([
             'data' => date('d.m.Y'),

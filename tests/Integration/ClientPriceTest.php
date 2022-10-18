@@ -114,7 +114,7 @@ class ClientPriceTest extends BaseTestCase
 
         $this->expectException(FanCourierInvalidParamException::class);
         $this->expectExceptionMessageMatches(
-            "/^The only keys accepted are: /"
+            "/^These keys are not allowed: /"
         );
 
         $this->client->price($params);

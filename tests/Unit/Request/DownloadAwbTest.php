@@ -44,7 +44,7 @@ class DownloadAwbTest extends TestCase
         $params['netflix'] = 'sure why not';
 
         $this->expectException(FanCourierInvalidParamException::class);
-        $this->expectExceptionMessageMatches("/^The only keys accepted are: /");
+        $this->expectExceptionMessageMatches("/^These keys are not allowed: /");
 
         $downloadAwb->validate($params);
     }

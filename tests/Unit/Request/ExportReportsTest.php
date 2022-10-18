@@ -45,7 +45,7 @@ class ExportReportsTest extends TestCase
         $params['detailed'] = 'so detailed';
 
         $this->expectException(FanCourierInvalidParamException::class);
-        $this->expectExceptionMessageMatches("/^The only keys accepted are: /");
+        $this->expectExceptionMessageMatches("/^These keys are not allowed: /");
 
         $exportReports->validate($params);
     }

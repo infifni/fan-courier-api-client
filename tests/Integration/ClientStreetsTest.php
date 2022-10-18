@@ -99,7 +99,7 @@ class ClientStreetsTest extends BaseTestCase
     public function testStreetsFailedExtraParam()
     {
         $this->expectException(FanCourierInvalidParamException::class);
-        $this->expectExceptionMessageMatches('/^The only keys accepted are: /');
+        $this->expectExceptionMessageMatches('/^These keys are not allowed: /');
 
         $this->client->streets([
             'judet' => 'Bihor',

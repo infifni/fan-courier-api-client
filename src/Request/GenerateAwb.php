@@ -151,7 +151,7 @@ class GenerateAwb extends Endpoint implements CsvFileRequestInterface
                 'required' => true
             ],
             'plata_ramburs_la' => [
-                'required' => true,
+                'required' => false,
                 'allowed_values' => [
                     self::RECIPIENT_ALLOWED_VALUE,
                     self::SENDER_ALLOWED_VALUE
